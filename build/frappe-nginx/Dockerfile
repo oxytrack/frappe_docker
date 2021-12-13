@@ -5,8 +5,11 @@
 ARG PYTHON_VERSION=3.9
 FROM python:${PYTHON_VERSION}-slim-bullseye as builder
 
-ARG GIT_REPO=https://github.com/frappe/frappe
-ARG GIT_BRANCH=develop
+#ARG GIT_REPO=https://github.com/frappe/frappe
+ARG GIT_REPO=https://github.com/oxytrack/frappe
+#ARG GIT_BRANCH=develop
+ARG GIT_BRANCH=version-13
+
 
 ENV NODE_VERSION=14.18.1
 ENV NVM_DIR=/root/.nvm
@@ -39,7 +42,8 @@ RUN cd apps/frappe \
     && yarn run production \
     && yarn install --production=true
 
-RUN git clone --depth 1 https://github.com/frappe/bench /tmp/bench \
+#RUN git clone --depth 1 https://github.com/frappe/bench /tmp/bench \
+RUN git clone --depth 1 https://github.com/oxytrack/bench /tmp/bench \
     && cp -r /tmp/bench/bench/config/templates /var/www/error_pages
 
 RUN cp -R apps/frappe/frappe/public/* sites/assets/frappe \

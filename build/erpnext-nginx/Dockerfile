@@ -1,11 +1,15 @@
 ARG NODE_IMAGE_TAG=14-bullseye-slim
 ARG DOCKER_REGISTRY_PREFIX=frappe
-ARG IMAGE_TAG=develop
+#ARG IMAGE_TAG=develop
+ARG IMAGE_TAG=version-13
 
 FROM node:${NODE_IMAGE_TAG} as builder
 
-ARG GIT_REPO=https://github.com/frappe/erpnext
-ARG GIT_BRANCH=develop
+#ARG GIT_REPO=https://github.com/frappe/erpnext
+ARG GIT_REPO=https://github.com/oxytrack/erpnext
+#ARG GIT_BRANCH=develop
+ARG GIT_BRANCH=version-13
+
 
 ARG FRAPPE_BRANCH=${GIT_BRANCH}
 

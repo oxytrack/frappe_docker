@@ -2,7 +2,8 @@ FROM debian:bullseye-slim as build
 
 LABEL author=frappé
 
-ARG GIT_REPO=https://github.com/frappe/bench.git
+#ARG GIT_REPO=https://github.com/frappe/bench.git
+ARG GIT_REPO=https://github.com/oxytrack/bench.git
 ARG GIT_BRANCH=develop
 
 RUN apt-get update \

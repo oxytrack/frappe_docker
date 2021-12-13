@@ -4,8 +4,11 @@ FROM python:${PYTHON_VERSION}-slim-bullseye
 # Add non root user without password
 RUN useradd -ms /bin/bash frappe
 
-ARG GIT_REPO=https://github.com/frappe/frappe
-ARG GIT_BRANCH=develop
+#ARG GIT_REPO=https://github.com/frappe/frappe
+ARG GIT_REPO=https://github.com/oxytrack/frappe
+#ARG GIT_BRANCH=develop
+ARG GIT_BRANCH=version-13
+
 
 ARG ARCH=amd64
 ENV PYTHONUNBUFFERED 1
