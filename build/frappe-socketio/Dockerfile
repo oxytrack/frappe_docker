@@ -6,7 +6,7 @@ ARG GIT_REPO=https://github.com/oxytrack/frappe.git
 ARG GIT_BRANCH=version-13
 
 
-RUN git clone --depth 1 -b ${GIT_BRANCH} ${GIT_REPO} /opt/frappe 
+RUN git clone --depth 1 -b ${GIT_BRANCH} ${GIT_REPO} /opt/frappe
 
 FROM node:bullseye-slim
 
