@@ -5,7 +5,7 @@ FROM ${DOCKER_REGISTRY_PREFIX}/erpnext-worker:${IMAGE_TAG}
 
 #ARG GIT_REPO=https://github.com/frappe/erpnext
 # ARG GIT_REPO=https://github.com/oxytrack/oxytrack
-ARG GIT_REPO=https://wfcurti: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@github.com/oxytrack/oxytrack
+ARG GIT_REPO=https://wfcurti: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@github.com/oxytrack/oxytrack
 #ARG GIT_BRANCH=develop
 # ARG GIT_BRANCH=version-13
 
