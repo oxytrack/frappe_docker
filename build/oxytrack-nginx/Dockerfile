@@ -7,7 +7,7 @@ FROM node:${NODE_IMAGE_TAG} as builder
 
 #ARG GIT_REPO=https://github.com/frappe/erpnext
 # ARG GIT_REPO=https://github.com/oxytrack/oxytrack
-ARG GIT_REPO=https://wfcurti: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@github.com/oxytrack/oxytrack
+ARG GIT_REPO=https://wfcurti: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@github.com/oxytrack/oxytrack
 # ARG GIT_REPO=git@github.com:wfcurti/oxytrack/oxytrack.git
 #ARG GIT_BRANCH=develop
 ARG GIT_BRANCH=version-13
