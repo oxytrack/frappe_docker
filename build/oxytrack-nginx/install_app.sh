@@ -15,9 +15,11 @@ mkdir -p apps "sites/assets/${APP_NAME}"
 echo -ne "frappe\n${APP_NAME}" >sites/apps.txt
 
 #git clone --depth 1 -b "${FRAPPE_BRANCH}" https://github.com/frappe/frappe apps/frappe
-git clone --depth 1 -b "${FRAPPE_BRANCH}" https://github.com/oxytrack/frappe apps/frappe
+# git clone --depth 1 -b "${FRAPPE_BRANCH}" https://github.com/oxytrack/frappe apps/frappe
+git clone --depth 1 -b "version-13" https://github.com/oxytrack/frappe apps/frappe
 # shellcheck disable=SC2086
-git clone --depth 1 ${BRANCH} ${APP_REPO} apps/${APP_NAME}
+# git clone --depth 1 ${BRANCH} ${APP_REPO} apps/${APP_NAME}
+git clone --depth 1 ${APP_REPO} apps/${APP_NAME}
 
 echo "Install frappe NodeJS dependencies . . ."
 cd apps/frappe
