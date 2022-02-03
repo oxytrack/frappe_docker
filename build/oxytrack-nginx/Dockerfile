@@ -15,6 +15,8 @@ ARG APP_BRANCH=
 
 ARG FRAPPE_BRANCH=${GIT_BRANCH}
 
+ARG SSH_PRIVATE_KEY
+
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
     python2 \
@@ -28,7 +30,7 @@ RUN apt-get update \
 RUN mkdir /root/.ssh/
 
 # Copy over private key, and set permissions
-ADD build/github-ssh/id_rsa /root/.ssh/id_rsa
+RUN echo "${SSH_PRIVATE_KEY}" > /root/.ssh/id_rsa
 RUN chmod 700 /root/.ssh/id_rsa
 RUN chown -R root:root /root/.ssh
 

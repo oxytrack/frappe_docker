@@ -10,6 +10,8 @@ ARG GIT_REPO=git@github.com:oxytrack/oxytrack
 #ARG GIT_BRANCH=develop
 # ARG GIT_BRANCH=version-13
 
+ARG SSH_PRIVATE_KEY
+
 USER root
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
@@ -21,7 +23,8 @@ RUN apt-get update \
 RUN mkdir /root/.ssh/
 
 # Copy over private key, and set permissions
-ADD build/github-ssh/id_rsa /root/.ssh/id_rsa
+# ADD build/github-ssh/id_rsa /root/.ssh/id_rsa
+RUN echo "${SSH_PRIVATE_KEY}" > /root/.ssh/id_rsa
 RUN chmod 700 /root/.ssh/id_rsa
 RUN chown -R root:root /root/.ssh
 
