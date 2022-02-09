@@ -17,7 +17,6 @@ ARG GIT_REPO=git@github.com:oxytrack/oxytrack
 ARG GIT_BRANCH=version-13
 ARG APP_BRANCH=main
 
-
 ARG FRAPPE_BRANCH=${GIT_BRANCH}
 
 ARG SSH_PRIVATE_KEY
