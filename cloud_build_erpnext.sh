@@ -5,6 +5,4 @@ gcloud builds submit --config=cloudbuild_frappe_worker.yaml
 gcloud builds submit --config=cloudbuild_frappe_nginx.yaml
 gcloud builds submit --config=cloudbuild_erpnext_worker.yaml
 gcloud builds submit --config=cloudbuild_erpnext_nginx.yaml
-gcloud builds submit --config=cloudbuild_oxytrack_worker.yaml
-gcloud builds submit --config=cloudbuild_oxytrack_nginx.yaml
 gcloud builds submit --config=cloudbuild_frappe_socketio.yaml

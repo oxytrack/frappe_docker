@@ -5,8 +5,8 @@
 ARG PYTHON_VERSION=3.9
 FROM python:${PYTHON_VERSION}-slim-bullseye as builder
 
-#ARG GIT_REPO=https://github.com/frappe/frappe
-ARG GIT_REPO=https://github.com/oxytrack/frappe
+ARG GIT_REPO=https://github.com/frappe/frappe
+# ARG GIT_REPO=https://github.com/oxytrack/frappe
 #ARG GIT_BRANCH=develop
 ARG GIT_BRANCH=version-13
 
@@ -19,6 +19,7 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -y \
     git \
     build-essential \
+    openssh-client \
     wget \
     # python2 for version-12 builds
     python2 \
@@ -42,8 +43,8 @@ RUN cd apps/frappe \
     && yarn run production \
     && yarn install --production=true
 
-#RUN git clone --depth 1 https://github.com/frappe/bench /tmp/bench \
-RUN git clone --depth 1 https://github.com/oxytrack/bench /tmp/bench \
+RUN git clone --depth 1 https://github.com/frappe/bench /tmp/bench \
+# RUN git clone --depth 1 https://github.com/oxytrack/bench /tmp/bench \
     && cp -r /tmp/bench/bench/config/templates /var/www/error_pages
 
 RUN cp -R apps/frappe/frappe/public/* sites/assets/frappe \
@@ -59,6 +60,7 @@ COPY --from=builder --chown=1000:1000 /home/frappe/frappe-bench/sites /var/www/h
 COPY --from=builder --chown=1000:1000 /var/www/error_pages /var/www/
 COPY build/frappe-nginx/nginx-default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY build/frappe-nginx/docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
 
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \

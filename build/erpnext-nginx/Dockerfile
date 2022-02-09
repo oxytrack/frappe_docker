@@ -1,12 +1,14 @@
 ARG NODE_IMAGE_TAG=14-bullseye-slim
-ARG DOCKER_REGISTRY_PREFIX=frappe
 #ARG IMAGE_TAG=develop
 ARG IMAGE_TAG=version-13
+ARG DOCKER_REGISTRY_PREFIX=frappe
+# ARG IMAGE_TAG=v0.0.2
+# ARG DOCKER_REGISTRY_PREFIX=europe-west6-docker.pkg.dev/oxytrack-322814/oxytrack-docker-repo
 
 FROM node:${NODE_IMAGE_TAG} as builder
 
-#ARG GIT_REPO=https://github.com/frappe/erpnext
-ARG GIT_REPO=https://github.com/oxytrack/erpnext
+ARG GIT_REPO=https://github.com/frappe/erpnext
+# ARG GIT_REPO=https://github.com/oxytrack/erpnext
 #ARG GIT_BRANCH=develop
 ARG GIT_BRANCH=version-13
 
@@ -19,6 +21,7 @@ RUN apt-get update \
     git \
     build-essential \
     ca-certificates \
+    openssh-client \
     && rm -rf /var/lib/apt/lists/*
 
 COPY build/erpnext-nginx/install_app.sh /install_app

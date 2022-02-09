@@ -4,8 +4,8 @@ FROM python:${PYTHON_VERSION}-slim-bullseye
 # Add non root user without password
 RUN useradd -ms /bin/bash frappe
 
-#ARG GIT_REPO=https://github.com/frappe/frappe
-ARG GIT_REPO=https://github.com/oxytrack/frappe
+ARG GIT_REPO=https://github.com/frappe/frappe
+# ARG GIT_REPO=https://github.com/oxytrack/frappe
 #ARG GIT_BRANCH=develop
 ARG GIT_BRANCH=version-13
 
@@ -42,6 +42,7 @@ RUN apt-get update \
     libffi-dev \
     libjpeg-dev \
     zlib1g-dev \
+    openssh-client \
     # For psycopg2
     libpq-dev \
     # For arm64 python wheel builds
@@ -72,6 +73,7 @@ RUN if [ "$(uname -m)" = "aarch64" ]; then export ARCH=arm64; fi \
 
 # Setup docker-entrypoint
 COPY build/frappe-worker/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -s /usr/local/bin/docker-entrypoint.sh / # backwards compat
 
 WORKDIR /home/frappe/frappe-bench

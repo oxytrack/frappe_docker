@@ -1,7 +1,7 @@
 FROM alpine/git as builder
 
-#ARG GIT_REPO=https://github.com/frappe/frappe.git
-ARG GIT_REPO=https://github.com/oxytrack/frappe.git
+ARG GIT_REPO=https://github.com/frappe/frappe.git
+# ARG GIT_REPO=https://github.com/oxytrack/frappe.git
 #ARG GIT_BRANCH=develop
 ARG GIT_BRANCH=version-13
 
@@ -28,6 +28,7 @@ RUN cd apps/frappe \
 
 # Setup docker-entrypoint
 COPY build/frappe-socketio/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 # backwards compat
 RUN ln -s /usr/local/bin/docker-entrypoint.sh /
 

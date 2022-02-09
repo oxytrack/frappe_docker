@@ -1,5 +1,15 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '.', '-f', 'build/oxytrack-worker/Dockerfile', '-t', 'europe-west6-docker.pkg.dev/oxytrack-322814/oxytrack-docker-repo/oxytrack-worker:v0.0.2' ]
+  secretEnv: ['SSH_KEY']
+  entrypoint: 'bash'
+  args: 
+  - -c
+  - |
+    docker build . --build-arg=SSH_PRIVATE_KEY="$$SSH_KEY" -f build/oxytrack-worker/Dockerfile -t europe-west6-docker.pkg.dev/oxytrack-322814/oxytrack-docker-repo/oxytrack-worker:v0.0.2
 images:
 - 'europe-west6-docker.pkg.dev/oxytrack-322814/oxytrack-docker-repo/oxytrack-worker:v0.0.2'
+availableSecrets:
+  secretManager:
+  - versionName: projects/oxytrack-322814/secrets/oxytrack_io-secret/versions/latest
+    env: 'SSH_KEY'
+
